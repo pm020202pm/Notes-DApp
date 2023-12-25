@@ -1,51 +1,38 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ethers } from 'ethers';
-import abi from './contractJson/Notes.json';
 
+import { contractAddress, contractABI } from './constants';
 
 function App() {
-
-  const [contract, setContract] = useState({
-    contractAddress: null,
-    contractABI: null,
-    provider: null,
-    signer: null,
-    contract: null
-  });
-
-
+  const [contract, setContract] = useState(null);
   const [notes, setNotes] = useState([]);
+  const myNote = useRef(null);
 
   useEffect(()=>{
     getContract();
   }, [])
 
   const getContract = async () => {
-    const contractAddress = "0x424F76CD8a394B4496288f780A730C995ABB0f04";
-    const contractABI = abi.abi;
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
-    const contractProvider = new ethers.Contract(contractAddress, contractABI, provider);
-    setContract({contractAddress, contractABI, provider, signer,contract});
-
-    const showNotes = await contractProvider.showNotes();
+    setContract(contract);
+    const showNotes = await contract.showNotes();
     setNotes(showNotes);
-    console.log(showNotes[0].myNote);
   }
 
-
   const addNotes = async () => {
-    const text = "note5";
-    await contract.contract.addNotes(text);
+
+    const addNotes = await contract.addNotes(myNote.current.value);
+    await addNotes.wait();
     getContract();
   }
 
   const formatDate= (timestamp) => {
     const date = new Date(timestamp * 1000);
     const year = date.getFullYear();
-    const month = date.getMonth() + 1; // Month is 0-indexed, so we add 1
+    const month = date.getMonth() + 1;
     const day = date.getDate();
     return  day+ '-' + month + '-' + year;
 
@@ -63,6 +50,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
+          <input type="text" ref={myNote} placeholder="Enter your note here" />
           <button onClick={()=>addNotes()}>Add Notes</button>
           {notes.map((note, index)=>{
             return <p key={index}>

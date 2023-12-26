@@ -1,19 +1,20 @@
-.App {
+/* .App {
   text-align: center;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,6 +23,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+} */
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-link {
@@ -36,3 +43,43 @@
     transform: rotate(360deg);
   }
 }
+
+.Card{
+  width: 700px;
+  display: flex;  
+  background-color: #15ca3c;
+  color: white;
+  border-radius: 10px;
+  /* padding: 10px; */
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.deleteButton{
+  height: 50;
+  width: 50;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 10px;
+  /* margin: 10px; */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.noteText{
+  width: 80%;
+  word-wrap: break-word;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.editButton{
+  background-color: #ff0000;
+  color: white;
+  border-radius: 10px;
+  /* padding: 10px; */
+  /* margin: 10px; */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+

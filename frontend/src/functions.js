@@ -1,9 +1,9 @@
 export const formatDate= (timestamp) => {
     const date = new Date(timestamp * 1000);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
+    const year = date.getFullYear().toString();
+    const month_ind = date.getMonth();
     const day = date.getDate();
-    return  day+ '-' + month + '-' + year;
+    return  day+ ' ' + Month[month_ind]+ '\'' + year[2] + year[3];
 
   }
 export const formatTime= (timestamp) => {
@@ -15,3 +15,9 @@ export const formatTime= (timestamp) => {
     return time;
 
 }
+
+
+const Month = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct",
+    "Nov", "Dec"
+  ];

@@ -1,34 +1,6 @@
-/* .App {
-  text-align: center;
-} */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
 
 body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
 }
 
 .App-link {
@@ -44,42 +16,104 @@ body{
   }
 }
 
-.Card{
-  width: 700px;
-  display: flex;  
-  background-color: #15ca3c;
-  color: white;
-  border-radius: 10px;
-  /* padding: 10px; */
-  margin: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+.note.new{
+  background-color: #4ca1f1;
 }
 
-.deleteButton{
-  height: 50;
-  width: 50;
-  background-color: #ff0000;
-  color: white;
-  border-radius: 10px;
-  /* margin: 10px; */
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+textarea{
+  border: none;
+  resize: none;
+  background-color: #4ca1f1;
 }
 
-.noteText{
-  width: 80%;
+textarea:focus{
+  outline: none;
+}
+
+.save{
+  font-size: 16px;
+  display: block;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.20);
+  background: linear-gradient(-90deg, #d7f338 0%, #e85a19);
+  
+}
+
+.save:active{
+  transform: translateY(2px) translateX(2px);
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.20);
+}
+
+.container{
+  max-width: 960px;
+  margin-right : auto;
+  margin-left: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.notes-list{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.icons{
+  /* height: 30px; */
+  /* width: 40px; */
+  /* display: block; */
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  border-radius: 30px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.20);
+  background: linear-gradient(-90deg, #d7f338 0%, #e85a19);
+}
+.icons:hover{
+
+  transform: translateY(2px) translateX(2px);
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.20);
+}
+
+.note{
+  background-color: #9ae643;
+  border-radius: 10px;
+  padding: 1rem;
+  /* min-height: 170px; */
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container1{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container2{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding-right: 20px;
+}
+.note span{
   word-wrap: break-word;
-  color: white;
-  padding: 10px;
-  margin: 10px;
+  overflow: auto;
+  font-size: 1.2rem;
+  font-weight: 400;
+
 }
 
-.editButton{
-  background-color: #ff0000;
-  color: white;
-  border-radius: 10px;
-  /* padding: 10px; */
-  /* margin: 10px; */
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+.note-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 
 

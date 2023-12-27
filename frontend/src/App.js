@@ -1,44 +1,42 @@
 import './App.css';
-import React, { useState, useEffect, useRef } from 'react';
-import {showNotes, addNotes, deleteNote, editNote} from './contract';
+import React, { useState, useEffect} from 'react';
+import {showNotes} from './contract';
 import {formatTime, formatDate} from './functions';
+import Note from './Note';
+import AddNote from './AddNote'; 
+
 function App() {
   const [notes, setNotes] = useState([]);
-  const myNote = useRef(null);
-  const [isEdit, setIsEdit] = useState(false); 
-  const [index, setIndex] = useState(null);
+ 
 
   useEffect(()=>{
     getNotesList(); 
   }, [])
 
-  const getNotesList =()=>{
-    showNotes().then((n)=>setNotes(n));
-  }
-
-
-  const editMyNote = (ind) => { 
-    setIsEdit(true);
-    setIndex(ind);
-    myNote.current.value =notes[ind].myNote;
+  const getNotesList =async ()=>{
+    await showNotes().then((n)=>setNotes(n));
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="container">
+      
         <p>
-          <input type="text" ref={myNote} placeholder="Enter your note here" />
-          <button onClick={()=>(isEdit)? editNote(index, myNote.current.value).then(()=>getNotesList()) : addNotes(myNote.current.value).then(()=> getNotesList())}>{(isEdit)? "Save": "Add Note"}</button>
+          <div className="notes-list">
+          <AddNote func={getNotesList()}/>
           {notes.map((note, index)=>{
-            return (<div className="Card">
-              <div className="noteText"><p>{note.myNote}</p></div>
-              <button onClick={()=> deleteNote(index).then(()=> getNotesList())} className="deleteButton">Delete</button>
-              <button onClick={()=> editMyNote(index)} className="editButton">Edit</button>
-            </div>)
+            return <Note 
+            index={index}
+            noteText={note.myNote} 
+            date={formatDate(note.timestamp)}
+            time = {formatTime(note.timestamp)}
+            func={getNotesList()}
+            />  
           })} 
+          
+          </div>
+          
 
         </p>
-      </header>
     </div>
   );
 }
